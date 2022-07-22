@@ -1,19 +1,21 @@
-import 'package:album_searcher_for_google_photos/enums/layout_mode.dart';
-import 'package:album_searcher_for_google_photos/models/album.dart';
-import 'package:album_searcher_for_google_photos/services/shared_album_service.dart';
-import 'package:album_searcher_for_google_photos/sliver_persistent_header_delegates/sliver_search_bar_delegate.dart';
-import 'package:album_searcher_for_google_photos/specifications/album_title_specification.dart';
-import 'package:album_searcher_for_google_photos/states/layout_state.dart';
-import 'package:album_searcher_for_google_photos/states/shared_album_state.dart';
-import 'package:album_searcher_for_google_photos/widgets/albums_sliver_grid.dart';
-import 'package:album_searcher_for_google_photos/widgets/albums_sliver_list.dart';
+import 'package:album_searcher_for_google_photos/comparators/album_comparator.dart';
 import 'package:flutter/material.dart';
+import 'package:googleapis/photoslibrary/v1.dart';
+
+import '../enums/layout_mode.dart';
+import '../services/shared_album_service.dart';
+import '../sliver_persistent_header_delegates/sliver_search_bar_delegate.dart';
+import '../specifications/album_title_specification.dart';
+import '../states/layout_state.dart';
+import '../states/shared_album_state.dart';
+import '../widgets/albums_sliver_grid.dart';
+import '../widgets/albums_sliver_list.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
@@ -35,13 +37,13 @@ class _HomePageState extends State<HomePage> {
           albumsSliver = SliverPadding(
             padding: const EdgeInsets.all(8),
             sliver: AlbumsSliverGrid(
-              albums: sharedAlbums..sort(),
+              albums: sharedAlbums..sort(albumComparator),
             ),
           );
           break;
         case LayoutMode.list:
           albumsSliver = AlbumsSliverList(
-            albums: sharedAlbums..sort(),
+            albums: sharedAlbums..sort(albumComparator),
           );
           break;
       }

@@ -1,5 +1,5 @@
-import 'package:album_searcher_for_google_photos/models/media_item.dart';
 import 'package:flutter/material.dart';
+import 'package:googleapis/photoslibrary/v1.dart';
 
 class MediaItemListTile extends StatelessWidget {
   final MediaItem mediaItem;
@@ -13,7 +13,7 @@ class MediaItemListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        mediaItem.filename ?? mediaItem.id,
+        mediaItem.filename ?? mediaItem.id!,
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
       ),

@@ -1,14 +1,15 @@
-import 'package:album_searcher_for_google_photos/pages/album_page.dart';
-import 'package:album_searcher_for_google_photos/pages/main_page.dart';
-import 'package:album_searcher_for_google_photos/pages/welcome_page.dart';
-import 'package:album_searcher_for_google_photos/route_paths/album_route_path.dart';
-import 'package:album_searcher_for_google_photos/route_paths/home_route_path.dart';
-import 'package:album_searcher_for_google_photos/route_paths/route_path.dart';
-import 'package:album_searcher_for_google_photos/route_paths/settings_route_path.dart';
-import 'package:album_searcher_for_google_photos/route_paths/welcome_route_path.dart';
-import 'package:album_searcher_for_google_photos/states/authentication_state.dart';
-import 'package:album_searcher_for_google_photos/states/router_state.dart';
 import 'package:flutter/material.dart';
+
+import '../pages/album_page.dart';
+import '../pages/main_page.dart';
+import '../pages/welcome_page.dart';
+import '../route_paths/album_route_path.dart';
+import '../route_paths/home_route_path.dart';
+import '../route_paths/route_path.dart';
+import '../route_paths/settings_route_path.dart';
+import '../route_paths/welcome_route_path.dart';
+import '../states/authentication_state.dart';
+import '../states/router_state.dart';
 
 class AppRouterDelegate extends RouterDelegate<RoutePath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<RoutePath> {

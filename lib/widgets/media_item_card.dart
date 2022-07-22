@@ -1,5 +1,5 @@
-import 'package:album_searcher_for_google_photos/models/media_item.dart';
 import 'package:flutter/material.dart';
+import 'package:googleapis/photoslibrary/v1.dart';
 
 class MediaItemCard extends StatelessWidget {
   final MediaItem mediaItem;
@@ -33,7 +33,7 @@ class MediaItemCard extends StatelessWidget {
               right: 16,
               bottom: 16,
               child: Text(
-                mediaItem.filename ?? mediaItem.id,
+                mediaItem.filename ?? mediaItem.id!,
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!

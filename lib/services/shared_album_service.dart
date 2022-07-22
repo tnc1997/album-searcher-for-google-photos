@@ -1,11 +1,9 @@
-import 'dart:convert';
-
-import 'package:album_searcher_for_google_photos/extensions/response_extensions.dart';
-import 'package:album_searcher_for_google_photos/models/album.dart';
-import 'package:album_searcher_for_google_photos/services/storage_service.dart';
-import 'package:album_searcher_for_google_photos/states/authentication_state.dart';
-import 'package:album_searcher_for_google_photos/states/shared_album_state.dart';
 import 'package:flutter/widgets.dart';
+import 'package:googleapis/photoslibrary/v1.dart';
+
+import '../services/storage_service.dart';
+import '../states/authentication_state.dart';
+import '../states/shared_album_state.dart';
 
 class SharedAlbumServiceScope extends InheritedWidget {
   final SharedAlbumService service;
@@ -40,37 +38,26 @@ class SharedAlbumService {
     required AuthenticationStateData authenticationStateData,
     required SharedAlbumStateData sharedAlbumStateData,
     required StorageService storageService,
-  })   : _authenticationStateData = authenticationStateData,
+  })  : _authenticationStateData = authenticationStateData,
         _sharedAlbumStateData = sharedAlbumStateData,
         _storageService = storageService;
 
   Future<List<Album>> list() async {
     final sharedAlbums = <Album>[];
 
-    final pageSize = 50;
+    final api = PhotosLibraryApi(_authenticationStateData.client!);
+
     String? pageToken;
 
     do {
-      final uri = Uri.https(
-        'photoslibrary.googleapis.com',
-        '/v1/sharedAlbums',
-        {
-          'pageSize': '$pageSize',
-          if (pageToken != null) 'pageToken': pageToken,
-        },
+      final response = await api.sharedAlbums.list(
+        pageSize: 50,
+        pageToken: pageToken,
       );
 
-      final response = await _authenticationStateData.client!.get(uri);
+      sharedAlbums.addAll(response.sharedAlbums ?? []);
 
-      if (!response.isSuccessStatusCode) {
-        throw Exception(response.body);
-      }
-
-      final data = json.decode(response.body) as Map<String, dynamic>;
-      sharedAlbums.addAll(
-        (data['sharedAlbums'] as List).map((e) => Album.fromJson(e)),
-      );
-      pageToken = data['nextPageToken'];
+      pageToken = response.nextPageToken;
     } while (pageToken != null);
 
     await _storageService.setSharedAlbums(sharedAlbums);

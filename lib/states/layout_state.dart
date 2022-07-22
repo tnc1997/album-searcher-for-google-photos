@@ -1,5 +1,6 @@
-import 'package:album_searcher_for_google_photos/enums/layout_mode.dart';
 import 'package:flutter/material.dart';
+
+import '../enums/layout_mode.dart';
 
 class LayoutState extends InheritedNotifier<LayoutStateData> {
   const LayoutState({

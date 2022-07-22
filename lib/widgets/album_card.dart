@@ -1,8 +1,8 @@
-import 'package:album_searcher_for_google_photos/models/album.dart';
-import 'package:album_searcher_for_google_photos/models/media_item.dart';
-import 'package:album_searcher_for_google_photos/services/media_item_service.dart';
-import 'package:album_searcher_for_google_photos/states/router_state.dart';
 import 'package:flutter/material.dart';
+import 'package:googleapis/photoslibrary/v1.dart';
+
+import '../services/media_item_service.dart';
+import '../states/router_state.dart';
 
 class AlbumCard extends StatefulWidget {
   final Album album;
@@ -13,7 +13,7 @@ class AlbumCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AlbumCardState createState() => _AlbumCardState();
+  State<AlbumCard> createState() => _AlbumCardState();
 }
 
 class _AlbumCardState extends State<AlbumCard> {
@@ -47,7 +47,7 @@ class _AlbumCardState extends State<AlbumCard> {
               right: 16,
               bottom: 16,
               child: Text(
-                widget.album.title ?? widget.album.id,
+                widget.album.title ?? widget.album.id!,
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!

@@ -1,10 +1,11 @@
-import 'package:album_searcher_for_google_photos/enums/layout_mode.dart';
-import 'package:album_searcher_for_google_photos/services/storage_service.dart';
-import 'package:album_searcher_for_google_photos/states/layout_state.dart';
 import 'package:flutter/material.dart';
 
+import '../enums/layout_mode.dart';
+import '../services/storage_service.dart';
+import '../states/layout_state.dart';
+
 class LayoutDropdownButtonFormField extends StatelessWidget {
-  const LayoutDropdownButtonFormField({Key? key}) : super(key: key);
+  const LayoutDropdownButtonFormField({super.key});
 
   @override
   Widget build(BuildContext context) {

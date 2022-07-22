@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:album_searcher_for_google_photos/pages/home_page.dart';
-import 'package:album_searcher_for_google_photos/pages/settings_page.dart';
-import 'package:album_searcher_for_google_photos/route_paths/route_path.dart';
-import 'package:album_searcher_for_google_photos/states/router_state.dart';
+
+import '../pages/home_page.dart';
+import '../pages/settings_page.dart';
+import '../route_paths/route_path.dart';
+import '../states/router_state.dart';
 
 class MainRouterDelegate extends RouterDelegate<RoutePath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<RoutePath> {

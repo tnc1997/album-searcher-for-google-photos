@@ -1,6 +1,7 @@
-import 'package:album_searcher_for_google_photos/extensions/string_extensions.dart';
-import 'package:album_searcher_for_google_photos/models/album.dart';
-import 'package:album_searcher_for_google_photos/specifications/specification.dart';
+import 'package:googleapis/photoslibrary/v1.dart';
+
+import '../extensions/string_extensions.dart';
+import '../specifications/specification.dart';
 
 class AlbumTitleSpecification extends Specification<Album> {
   final String title;

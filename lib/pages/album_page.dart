@@ -1,13 +1,14 @@
-import 'package:album_searcher_for_google_photos/enums/layout_mode.dart';
-import 'package:album_searcher_for_google_photos/models/album.dart';
-import 'package:album_searcher_for_google_photos/models/media_item.dart';
-import 'package:album_searcher_for_google_photos/services/album_service.dart';
-import 'package:album_searcher_for_google_photos/services/media_item_service.dart';
-import 'package:album_searcher_for_google_photos/states/layout_state.dart';
-import 'package:album_searcher_for_google_photos/widgets/album_sliver_app_bar.dart';
-import 'package:album_searcher_for_google_photos/widgets/media_items_sliver_grid.dart';
-import 'package:album_searcher_for_google_photos/widgets/media_items_sliver_list.dart';
 import 'package:flutter/material.dart';
+import 'package:googleapis/photoslibrary/v1.dart';
+
+import '../comparators/media_item_comparator.dart';
+import '../enums/layout_mode.dart';
+import '../services/album_service.dart';
+import '../services/media_item_service.dart';
+import '../states/layout_state.dart';
+import '../widgets/album_sliver_app_bar.dart';
+import '../widgets/media_items_sliver_grid.dart';
+import '../widgets/media_items_sliver_list.dart';
 
 class AlbumPage extends StatefulWidget {
   final String id;
@@ -18,7 +19,7 @@ class AlbumPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AlbumPageState createState() => _AlbumPageState();
+  State<AlbumPage> createState() => _AlbumPageState();
 }
 
 class _AlbumPageState extends State<AlbumPage> {
@@ -47,13 +48,15 @@ class _AlbumPageState extends State<AlbumPage> {
                         mediaItemsSliver = SliverPadding(
                           padding: const EdgeInsets.all(8),
                           sliver: MediaItemsSliverGrid(
-                            mediaItems: snapshot.data!.toList()..sort(),
+                            mediaItems: snapshot.data!.toList()
+                              ..sort(mediaItemComparator),
                           ),
                         );
                         break;
                       case LayoutMode.list:
                         mediaItemsSliver = MediaItemsSliverList(
-                          mediaItems: snapshot.data!.toList()..sort(),
+                          mediaItems: snapshot.data!.toList()
+                            ..sort(mediaItemComparator),
                         );
                         break;
                     }

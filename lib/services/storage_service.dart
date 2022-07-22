@@ -1,10 +1,11 @@
 import 'dart:convert';
 
-import 'package:album_searcher_for_google_photos/enums/layout_mode.dart';
-import 'package:album_searcher_for_google_photos/models/album.dart';
 import 'package:flutter/material.dart';
+import 'package:googleapis/photoslibrary/v1.dart';
 import 'package:oauth2/oauth2.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../enums/layout_mode.dart';
 
 class StorageServiceScope extends InheritedWidget {
   final StorageService service;

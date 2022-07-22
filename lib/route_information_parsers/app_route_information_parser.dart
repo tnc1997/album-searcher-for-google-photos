@@ -1,10 +1,11 @@
-import 'package:album_searcher_for_google_photos/route_paths/album_route_path.dart';
-import 'package:album_searcher_for_google_photos/route_paths/home_route_path.dart';
-import 'package:album_searcher_for_google_photos/route_paths/route_path.dart';
-import 'package:album_searcher_for_google_photos/route_paths/settings_route_path.dart';
-import 'package:album_searcher_for_google_photos/route_paths/welcome_route_path.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+
+import '../route_paths/album_route_path.dart';
+import '../route_paths/home_route_path.dart';
+import '../route_paths/route_path.dart';
+import '../route_paths/settings_route_path.dart';
+import '../route_paths/welcome_route_path.dart';
 
 class AppRouteInformationParser extends RouteInformationParser<RoutePath> {
   @override

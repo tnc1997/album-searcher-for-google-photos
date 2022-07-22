@@ -1,7 +1,8 @@
-# Created by https://www.toptal.com/developers/gitignore/api/firebase,flutter,intellij,vscode
-# Edit at https://www.toptal.com/developers/gitignore?templates=firebase,flutter,intellij,vscode
+# Created by https://www.toptal.com/developers/gitignore/api/firebase,flutter,intellij,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=firebase,flutter,intellij,visualstudiocode
 
 ### Firebase ###
+.idea
 **/node_modules/*
 **/.firebaserc
 
@@ -84,6 +85,9 @@ lib/generated_plugin_registrant.dart
 .idea/**/dictionaries
 .idea/**/shelf
 
+# AWS User-specific
+.idea/**/aws.xml
+
 # Generated files
 .idea/**/contentModel.xml
 
@@ -134,6 +138,9 @@ atlassian-ide-plugin.xml
 # Cursive Clojure plugin
 .idea/replstate.xml
 
+# SonarLint plugin
+.idea/sonarlint/
+
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
 crashlytics.properties
@@ -176,12 +183,33 @@ fabric.properties
 # https://plugins.jetbrains.com/plugin/12206-codestream
 .idea/codestream.xml
 
-### vscode ###
+# Azure Toolkit for IntelliJ plugin
+# https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
+.idea/**/azureSettings.xml
+
+### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+# Support for Project snippet scope
+.vscode/*.code-snippets
+
+# Ignore code-workspaces
 *.code-workspace
 
 ### Other ###

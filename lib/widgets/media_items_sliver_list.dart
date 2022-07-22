@@ -1,6 +1,7 @@
-import 'package:album_searcher_for_google_photos/models/media_item.dart';
-import 'package:album_searcher_for_google_photos/widgets/media_item_list_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:googleapis/photoslibrary/v1.dart';
+
+import '../widgets/media_item_list_tile.dart';
 
 class MediaItemsSliverList extends StatelessWidget {
   final List<MediaItem> mediaItems;

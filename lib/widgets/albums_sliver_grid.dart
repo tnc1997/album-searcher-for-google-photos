@@ -1,6 +1,7 @@
-import 'package:album_searcher_for_google_photos/models/album.dart';
-import 'package:album_searcher_for_google_photos/widgets/album_card.dart';
 import 'package:flutter/material.dart';
+import 'package:googleapis/photoslibrary/v1.dart';
+
+import '../widgets/album_card.dart';
 
 class AlbumsSliverGrid extends StatelessWidget {
   final List<Album> albums;

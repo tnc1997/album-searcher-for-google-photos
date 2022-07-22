@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oauth2/oauth2.dart';
+import 'package:googleapis_auth/googleapis_auth.dart';
 
 class AuthenticationState extends InheritedNotifier<AuthenticationStateData> {
   const AuthenticationState({
@@ -20,15 +20,15 @@ class AuthenticationState extends InheritedNotifier<AuthenticationStateData> {
 }
 
 class AuthenticationStateData extends ChangeNotifier {
-  Client? _client;
+  AuthClient? _client;
 
   AuthenticationStateData({
-    Client? client,
+    AuthClient? client,
   }) : _client = client;
 
-  Client? get client => _client;
+  AuthClient? get client => _client;
 
-  set client(Client? client) {
+  set client(AuthClient? client) {
     if (client != _client) {
       _client = client;
       notifyListeners();

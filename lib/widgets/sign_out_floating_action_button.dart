@@ -1,8 +1,9 @@
-import 'package:album_searcher_for_google_photos/services/authentication/authentication_service.dart';
 import 'package:flutter/material.dart';
 
+import '../services/authentication/authentication_service.dart';
+
 class SignOutFloatingActionButton extends StatelessWidget {
-  const SignOutFloatingActionButton({Key? key}) : super(key: key);
+  const SignOutFloatingActionButton({super.key});
 
   @override
   Widget build(BuildContext context) {

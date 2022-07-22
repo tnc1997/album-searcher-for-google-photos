@@ -1,5 +1,5 @@
-import 'package:album_searcher_for_google_photos/specifications/composite_specification.dart';
-import 'package:album_searcher_for_google_photos/specifications/specification.dart';
+import '../specifications/composite_specification.dart';
+import '../specifications/specification.dart';
 
 class OrCompositeSpecification<T> extends CompositeSpecification<T> {
   OrCompositeSpecification({

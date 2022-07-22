@@ -1,9 +1,7 @@
-import 'dart:convert';
-
-import 'package:album_searcher_for_google_photos/extensions/response_extensions.dart';
-import 'package:album_searcher_for_google_photos/models/album.dart';
-import 'package:album_searcher_for_google_photos/states/authentication_state.dart';
 import 'package:flutter/widgets.dart';
+import 'package:googleapis/photoslibrary/v1.dart';
+
+import '../states/authentication_state.dart';
 
 class AlbumServiceScope extends InheritedWidget {
   final AlbumService service;
@@ -36,18 +34,9 @@ class AlbumService {
     required AuthenticationStateData authenticationStateData,
   }) : _authenticationStateData = authenticationStateData;
 
-  Future<Album> get(String id) async {
-    final uri = Uri.https(
-      'photoslibrary.googleapis.com',
-      '/v1/albums/$id',
-    );
-
-    final response = await _authenticationStateData.client!.get(uri);
-
-    if (!response.isSuccessStatusCode) {
-      throw Exception(response.body);
-    }
-
-    return Album.fromJson(json.decode(response.body));
+  Future<Album> get(String albumId) async {
+    return await PhotosLibraryApi(_authenticationStateData.client!)
+        .albums
+        .get(albumId);
   }
 }

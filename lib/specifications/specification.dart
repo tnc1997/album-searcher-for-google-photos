@@ -1,5 +1,5 @@
-import 'package:album_searcher_for_google_photos/specifications/and_composite_specification.dart';
-import 'package:album_searcher_for_google_photos/specifications/or_composite_specification.dart';
+import '../specifications/and_composite_specification.dart';
+import '../specifications/or_composite_specification.dart';
 
 abstract class Specification<T> {
   const Specification();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:album_searcher_for_google_photos/models/album.dart';
+import 'package:googleapis/photoslibrary/v1.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AlbumOpenInGooglePhotosIconButton extends StatelessWidget {

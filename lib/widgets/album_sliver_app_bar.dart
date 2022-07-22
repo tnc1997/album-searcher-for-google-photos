@@ -1,8 +1,8 @@
-import 'package:album_searcher_for_google_photos/models/album.dart';
-import 'package:album_searcher_for_google_photos/models/media_item.dart';
-import 'package:album_searcher_for_google_photos/services/media_item_service.dart';
-import 'package:album_searcher_for_google_photos/widgets/album_open_in_google_photos_icon_button.dart';
 import 'package:flutter/material.dart';
+import 'package:googleapis/photoslibrary/v1.dart';
+
+import '../services/media_item_service.dart';
+import '../widgets/album_open_in_google_photos_icon_button.dart';
 
 class AlbumSliverAppBar extends StatefulWidget {
   final Album album;
@@ -13,7 +13,7 @@ class AlbumSliverAppBar extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AlbumSliverAppBarState createState() => _AlbumSliverAppBarState();
+  State<AlbumSliverAppBar> createState() => _AlbumSliverAppBarState();
 }
 
 class _AlbumSliverAppBarState extends State<AlbumSliverAppBar> {
@@ -37,7 +37,7 @@ class _AlbumSliverAppBarState extends State<AlbumSliverAppBar> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.album.title ?? widget.album.id,
+                widget.album.title ?? widget.album.id!,
                 style: Theme.of(context)
                     .textTheme
                     .headline6!
@@ -84,7 +84,7 @@ class _AlbumSliverAppBarState extends State<AlbumSliverAppBar> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.album.title ?? widget.album.id,
+              widget.album.title ?? widget.album.id!,
               style: Theme.of(context).textTheme.headline6,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,

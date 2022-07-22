@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:album_searcher_for_google_photos/services/storage_service.dart';
-import 'package:album_searcher_for_google_photos/states/theme_state.dart';
+
+import '../services/storage_service.dart';
+import '../states/theme_state.dart';
 
 class ThemeDropdownButtonFormField extends StatelessWidget {
-  const ThemeDropdownButtonFormField({Key? key}) : super(key: key);
+  const ThemeDropdownButtonFormField({super.key});
 
   @override
   Widget build(BuildContext context) {

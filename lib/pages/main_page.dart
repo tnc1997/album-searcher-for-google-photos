@@ -1,6 +1,7 @@
-import 'package:album_searcher_for_google_photos/router_delegates/main_router_delegate.dart';
-import 'package:album_searcher_for_google_photos/states/router_state.dart';
 import 'package:flutter/material.dart';
+
+import '../router_delegates/main_router_delegate.dart';
+import '../states/router_state.dart';
 
 class MainPage extends StatefulWidget {
   final RouterStateData routerStateData;
@@ -11,7 +12,7 @@ class MainPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MainPageState createState() => _MainPageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {

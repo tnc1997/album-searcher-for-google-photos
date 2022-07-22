@@ -1,19 +1,20 @@
-import 'package:album_searcher_for_google_photos/route_information_parsers/app_route_information_parser.dart';
-import 'package:album_searcher_for_google_photos/route_paths/route_path.dart';
-import 'package:album_searcher_for_google_photos/router_delegates/app_router_delegate.dart';
-import 'package:album_searcher_for_google_photos/services/album_service.dart';
-import 'package:album_searcher_for_google_photos/services/authentication/authentication_service.dart';
-import 'package:album_searcher_for_google_photos/services/media_item_service.dart';
-import 'package:album_searcher_for_google_photos/services/shared_album_service.dart';
-import 'package:album_searcher_for_google_photos/services/storage_service.dart';
-import 'package:album_searcher_for_google_photos/states/authentication_state.dart';
-import 'package:album_searcher_for_google_photos/states/layout_state.dart';
-import 'package:album_searcher_for_google_photos/states/router_state.dart';
-import 'package:album_searcher_for_google_photos/states/shared_album_state.dart';
-import 'package:album_searcher_for_google_photos/states/theme_state.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../route_information_parsers/app_route_information_parser.dart';
+import '../route_paths/route_path.dart';
+import '../router_delegates/app_router_delegate.dart';
+import '../services/album_service.dart';
+import '../services/authentication/authentication_service.dart';
+import '../services/media_item_service.dart';
+import '../services/shared_album_service.dart';
+import '../services/storage_service.dart';
+import '../states/authentication_state.dart';
+import '../states/layout_state.dart';
+import '../states/router_state.dart';
+import '../states/shared_album_state.dart';
+import '../states/theme_state.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -97,7 +98,7 @@ class App extends StatefulWidget {
   final ThemeStateData themeStateData;
 
   const App({
-    Key? key,
+    super.key,
     required this.albumService,
     required this.authenticationService,
     required this.authenticationStateData,
@@ -110,10 +111,10 @@ class App extends StatefulWidget {
     required this.sharedAlbumStateData,
     required this.storageService,
     required this.themeStateData,
-  }) : super(key: key);
+  });
 
   @override
-  _AppState createState() => _AppState();
+  State<App> createState() => _AppState();
 }
 
 class _AppState extends State<App> {
@@ -146,21 +147,17 @@ class _AppState extends State<App> {
                             routerDelegate: widget.routerDelegate,
                             title: 'Album Searcher for Google Photos',
                             theme: ThemeData.from(
-                              colorScheme: ColorScheme.light(
+                              colorScheme: const ColorScheme.light(
                                 primary: Colors.red,
-                                primaryVariant: Colors.red[700]!,
                                 secondary: Colors.red,
-                                secondaryVariant: Colors.red[700]!,
                                 onPrimary: Colors.white,
                                 onSecondary: Colors.white,
                               ),
                             ),
                             darkTheme: ThemeData.from(
-                              colorScheme: ColorScheme.dark(
+                              colorScheme: const ColorScheme.dark(
                                 primary: Colors.red,
-                                primaryVariant: Colors.red[700]!,
                                 secondary: Colors.red,
-                                secondaryVariant: Colors.red[700]!,
                                 onPrimary: Colors.white,
                                 onSecondary: Colors.white,
                               ),

@@ -1,10 +1,10 @@
-import 'package:album_searcher_for_google_photos/services/authentication/authentication_service.dart';
-import 'package:album_searcher_for_google_photos/services/authentication/io_authentication_service.dart';
-import 'package:album_searcher_for_google_photos/services/storage_service.dart';
-import 'package:album_searcher_for_google_photos/states/authentication_state.dart';
-import 'package:album_searcher_for_google_photos/states/layout_state.dart';
-import 'package:album_searcher_for_google_photos/states/shared_album_state.dart';
-import 'package:album_searcher_for_google_photos/states/theme_state.dart';
+import '../../states/authentication_state.dart';
+import '../../states/layout_state.dart';
+import '../../states/shared_album_state.dart';
+import '../../states/theme_state.dart';
+import '../storage_service.dart';
+import 'authentication_service.dart';
+import 'io_authentication_service.dart';
 
 AuthenticationService createAuthenticationService(
   AuthenticationStateData authenticationStateData,

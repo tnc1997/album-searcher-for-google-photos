@@ -1,10 +1,7 @@
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:album_searcher_for_google_photos/extensions/response_extensions.dart';
-import 'package:album_searcher_for_google_photos/models/media_item.dart';
-import 'package:album_searcher_for_google_photos/states/authentication_state.dart';
 import 'package:flutter/widgets.dart';
+import 'package:googleapis/photoslibrary/v1.dart';
+
+import '../states/authentication_state.dart';
 
 class MediaItemServiceScope extends InheritedWidget {
   final MediaItemService service;
@@ -37,54 +34,31 @@ class MediaItemService {
     required AuthenticationStateData authenticationStateData,
   }) : _authenticationStateData = authenticationStateData;
 
-  Future<MediaItem> get(String id) async {
-    final uri = Uri.https(
-      'photoslibrary.googleapis.com',
-      '/v1/mediaItems/$id',
-    );
-
-    final response = await _authenticationStateData.client!.get(uri);
-
-    if (!response.isSuccessStatusCode) {
-      throw Exception(response.body);
-    }
-
-    return MediaItem.fromJson(json.decode(response.body));
+  Future<MediaItem> get(String mediaItemId) async {
+    return await PhotosLibraryApi(_authenticationStateData.client!)
+        .mediaItems
+        .get(mediaItemId);
   }
 
   Future<List<MediaItem>> search(String albumId) async {
     final mediaItems = <MediaItem>[];
 
-    final pageSize = 100;
+    final api = PhotosLibraryApi(_authenticationStateData.client!);
+
     String? pageToken;
 
     do {
-      final uri = Uri.https(
-        'photoslibrary.googleapis.com',
-        '/v1/mediaItems:search',
+      final response = await api.mediaItems.search(
+        SearchMediaItemsRequest(
+          albumId: albumId,
+          pageSize: 100,
+          pageToken: pageToken,
+        ),
       );
 
-      final response = await _authenticationStateData.client!.post(
-        uri,
-        headers: {
-          HttpHeaders.contentTypeHeader: 'application/json',
-        },
-        body: json.encode({
-          'albumId': albumId,
-          'pageSize': pageSize,
-          if (pageToken != null) 'pageToken': pageToken,
-        }),
-      );
+      mediaItems.addAll(response.mediaItems ?? []);
 
-      if (!response.isSuccessStatusCode) {
-        throw Exception(response.body);
-      }
-
-      final data = json.decode(response.body) as Map<String, dynamic>;
-      mediaItems.addAll(
-        (data['mediaItems'] as List).map((e) => MediaItem.fromJson(e)),
-      );
-      pageToken = data['nextPageToken'];
+      pageToken = response.nextPageToken;
     } while (pageToken != null);
 
     return mediaItems;

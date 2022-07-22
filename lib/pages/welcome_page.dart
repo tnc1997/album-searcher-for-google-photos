@@ -1,14 +1,14 @@
-import 'package:album_searcher_for_google_photos/widgets/sign_in_elevated_button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../widgets/sign_in_elevated_button.dart';
+
 class WelcomePage extends StatefulWidget {
-  const WelcomePage({Key? key}) : super(key: key);
+  const WelcomePage({super.key});
 
   @override
-  _WelcomePageState createState() => _WelcomePageState();
+  State<WelcomePage> createState() => _WelcomePageState();
 }
 
 class _WelcomePageState extends State<WelcomePage> {
@@ -40,10 +40,9 @@ class _WelcomePageState extends State<WelcomePage> {
                           Padding(
                             padding: const EdgeInsets.all(8),
                             child: CircleAvatar(
-                              child: SvgPicture.asset(
-                                'images/image-search.svg',
-                                width: 50,
-                                height: 50,
+                              child: Icon(
+                                Icons.image_search,
+                                size: 50,
                                 color: Theme.of(context).colorScheme.onPrimary,
                               ),
                               backgroundColor:
